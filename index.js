@@ -5,6 +5,7 @@ import 'dotenv/config';
 // Connect to database
 await mongoose.connect(process.env.MONGO_URL);
 
+
 dbConnection()
 
 // create Express App

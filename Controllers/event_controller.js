@@ -35,9 +35,12 @@ export const getEvent = async (req, res, next) => {
 }
 
 // Endpoint to update the details of an event
-export const updateEvent = (req, res, next) => {
+export const patchEvent = async (req, res, next) => {
     try {
-        res.json(`Event with ID ${req.params.id} has been updated`)
+        // Update recipe ny id
+        const updatedEvent = await eventModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        // Return response
+        res.json(updatedEvent)
     } catch (error) {
         next(error)
     }

@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const eventSchema = new Schema ({
     eventName: {type: String},

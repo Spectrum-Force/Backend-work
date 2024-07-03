@@ -6,7 +6,7 @@ export const createUser = async (req, res) => {
     try {
         // Extract the necessary fields from the request body
         const { username, email, password, role, organizationName,
-            organizationContact, socialMediaLinks } = req.body;
+            organizationContact } = req.body;
         // Create a new User instance with the provided data
         const newUser = new User({
             username,
@@ -16,7 +16,7 @@ export const createUser = async (req, res) => {
             // Only create fields related to the organization if the role is "organizer."
             organizationName: role === 'organizer' ? organizationName : undefined,
             organizationContact: role === 'organizer' ? organizationContact : undefined,
-            socialMediaLinks: role === 'organizer' ? socialMediaLinks : undefined
+           
         });
         // Save the new user to the database
         await newUser.save();
@@ -49,12 +49,12 @@ export const getUser = async (req, res) => {
 
 
 // Retrieve a list of all users
-export const getUsers = async (req, res) => {
+export const getUsers = async (req, res, next) => {
     try {
-        const users = await User.find().populate('eventsOrganized');
+        const users = await User.find();
         res.status(200).json(users);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        next(error);
     }
 };
 

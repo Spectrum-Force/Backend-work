@@ -4,7 +4,7 @@ import { Schema, model } from "mongoose";
 const eventSchema = new Schema ({
     eventName: {type: String},
     description: {type: String},
-    date: {type: Date},
+    date: {type: String},
     price: {type: Number},
     location: {type: String},
     flyer: {type: String}

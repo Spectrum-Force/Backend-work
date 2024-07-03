@@ -12,15 +12,29 @@ export const addEvent = async (req, res, next) => {
     }
 }
 
-// Endpoint to get all events
+// Endpoint to get events filtered by certain parameters
 export const getEvents = async (req, res, next) => {
     try {
-        const allEvents = await eventModel.find()
-        console.log('The upcoming events have been successfully retrieved')
-        res.status(200).json(allEvents)
+        // Get query parameters
+        const { 
+            filter = "{}", //use curly braces when expecting something to return as an object
+            sort = "{}",
+            fields = "{}",
+            limit = 10, 
+            skip = 0 
+         } = req.query;
+        // Get all categories from database
+        const allEvents = await eventModel
+            .find(JSON.parse(filter))
+            .sort(JSON.parse(sort))
+            .select(JSON.parse(fields))
+            .limit(limit)
+            .skip(skip);
+// Return response
+res.status(200).json(allEvents);
     } catch (error) {
-        next(error)
-    }
+    next(error)
+}
 }
 
 // Endpoint to get an event with a unique id

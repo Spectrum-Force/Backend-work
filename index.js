@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import 'dotenv/config';
 import { dbConnection } from './config/db.js';
 import userRouter from './Routes/user.js';
+import authRouter from './Controllers/auth.js';
 
 
 // Connect to database
@@ -18,7 +19,8 @@ const app = express();
 app.use(express.json());
 
 // routes
-app.use('/users', userRouter);
+app.use( userRouter);
+app.use( authRouter);
 
 
 // Listem for incoming requests

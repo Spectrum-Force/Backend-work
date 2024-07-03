@@ -37,9 +37,9 @@ const userSchema = new Schema({
   },
   
   eventsOrganized: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Event'
-  }]
+    type: Schema.Types.ObjectId,
+    ref: 'Event'
+}]
 
 }, {timestamps: true});
 

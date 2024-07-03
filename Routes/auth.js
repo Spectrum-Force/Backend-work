@@ -3,7 +3,6 @@ import authRouter from "../Controllers/auth.js";
 
 
 
-
 //  Create a router
 const authenticationRouter = Router();
 

@@ -1,5 +1,6 @@
 import { Router } from "express";
-import authRouter from "./controllers/auth.js";
+import authRouter from "../Controllers/auth.js";
+
 
 
 

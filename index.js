@@ -9,6 +9,7 @@ import authenticationRouter from './Routes/auth.js';
 import eventRouter from './Routes/event_router.js';
 
 
+
 // Connect to database
 await mongoose.connect(process.env.MONGO_URL);
 

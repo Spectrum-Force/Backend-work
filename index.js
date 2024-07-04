@@ -13,7 +13,7 @@ import eventRouter from './Routes/event_router.js';
 await mongoose.connect(process.env.MONGO_URL);
 
 
-dbConnection()
+dbConnection();
 
 // create Express App
 const app = express();

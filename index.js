@@ -28,11 +28,14 @@ expressOasGenerator.handleResponses(app, {
 //Apply middlewares
 app.use(express.json());
 app.use(cors());
+app.use(express.static('uploads'))
 
 // routes
 app.use( userRouter);
 app.use( authenticationRouter);
 app.use(eventRouter);
+expressOasGenerator.handleRequests();
+app.use((req, res) => res.redirect('/api-docs'));
 
 
 // Listem for incoming requests

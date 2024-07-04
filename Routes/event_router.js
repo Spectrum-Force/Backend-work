@@ -15,9 +15,9 @@ eventRouter.get('/events', getEvents)
 eventRouter.get('/events/:id', getEvent)
 
 // Update an event
-eventRouter.patch('/events', patchEvent)
+eventRouter.patch('/events/:id', patchEvent)
 
 // Delete an event
-eventRouter.delete('/events', deleteEvent)
+eventRouter.delete('/events/:id', deleteEvent)
 
 export default eventRouter

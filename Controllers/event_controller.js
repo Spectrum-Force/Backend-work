@@ -15,9 +15,23 @@ export const addEvent = async (req, res, next) => {
 // Endpoint to get all events
 export const getEvents = async (req, res, next) => {
     try {
-        const allEvents = await eventModel.find()
-        console.log('The upcoming events have been successfully retrieved')
-        res.status(200).json(allEvents)
+        // Get query parameters
+        const { 
+            filter = "{}", //use curly braces when expecting something to return as an object
+            sort = "{}",
+            fields = "{}",
+            limit = 10, 
+            skip = 0 
+         } = req.query;
+        // Get all categories from database
+        const allEvents = await eventModel
+            .find(JSON.parse(filter))
+            .sort(JSON.parse(sort))
+            .select(JSON.parse(fields))
+            .limit(limit)
+            .skip(skip);
+// Return response
+res.status(200).json(allEvents);
     } catch (error) {
         next(error)
     }
@@ -38,7 +52,7 @@ export const getEvent = async (req, res, next) => {
 export const patchEvent = async (req, res, next) => {
     try {
         // Update recipe ny id
-        const updatedEvent = await eventModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        const updatedEvent = await eventModel.findByIdAndUpdate(req.params.id, req.body, {new: true })
         // Return response
         res.json(updatedEvent)
     } catch (error) {

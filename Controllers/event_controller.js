@@ -55,7 +55,9 @@ export const getEvent = async (req, res, next) => {
 export const patchEvent = async (req, res, next) => {
     try {
         // Update recipe ny id
-        const updatedEvent = await eventModel.findByIdAndUpdate(req.params.id, req.body, {new: true })
+        const updatedEvent = await eventModel.findByIdAndUpdate(req.params.id, 
+            {...req.body, image: req?.file?.filename},
+                {new: true })
         // Return response
         res.json(updatedEvent)
     } catch (error) {

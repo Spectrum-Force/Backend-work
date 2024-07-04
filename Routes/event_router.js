@@ -16,7 +16,7 @@ eventRouter.get('/events', getEvents)
 eventRouter.get('/events/:id', getEvent)
 
 // Update an event
-eventRouter.patch('/events/:id', patchEvent)
+eventRouter.patch('/events/:id', remoteUpload.single('flyer'), patchEvent)
 
 // Delete an event
 eventRouter.delete('/events/:id', deleteEvent)

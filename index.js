@@ -5,7 +5,7 @@ import cors from 'cors';
 import expressOasGenerator from 'express-oas-generator';
 import { dbConnection } from './config/db.js';
 import userRouter from './Routes/user.js';
-import authenticationRouter from './Routes/auth.js';
+// import authenticationRouter from './Routes/auth.js';
 import eventRouter from './Routes/event_router.js';
 
 
@@ -32,7 +32,7 @@ app.use(express.static('uploads'))
 
 // routes
 app.use( userRouter);
-app.use( authenticationRouter);
+// app.use( authenticationRouter);
 app.use(eventRouter);
 expressOasGenerator.handleRequests();
 app.use((req, res) => res.redirect('/api-docs'));

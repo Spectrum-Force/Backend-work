@@ -6,7 +6,7 @@ export const addEvent = async (req, res, next) => {
         // Declare a variable to store the data posted
         const addData = await eventModel.create({
             ...req.body,
-            image: req.file.filename
+            flyer: req.file.filename
         });
         // console.log('request', req.body)
         res.status(200).json(addData)
